@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace testing123
 {
+    // This is a calculator
     public class Calculator
     {
         public int Add(int a, int b) => a + b;
