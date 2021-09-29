@@ -325,6 +325,9 @@ __pycache__/
 # OpenCover UI analysis results
 OpenCover/
 
+# Coverlet output
+coverage.cobertura.xml
+
 # Azure Stream Analytics local run output
 ASALocalRun/
 
