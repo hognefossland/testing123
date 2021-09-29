@@ -37,7 +37,7 @@ jobs:
         ls -al
     - name: Update wiki
       run: |
-        cp ..\testing123.UnitTests\coverage.cobertura.xml .
+        cp ../testing123.UnitTests/coverage.cobertura.xml .
     
     - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@4.8.12
