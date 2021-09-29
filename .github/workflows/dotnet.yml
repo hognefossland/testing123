@@ -38,6 +38,7 @@ jobs:
     - name: check wiki repo content after change
       run: |
         ls -al
+        
 #    - name: Commit files
 #      run: |
 #        git config --local user.email "action@github.com"
