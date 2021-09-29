@@ -33,7 +33,11 @@ jobs:
         reporter: dotnet-trx                                       # Format of test results
 
 
-
+  coverage:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: Create and navigate to wiki folder
       run: mkdir wiki && cd wiki
 
