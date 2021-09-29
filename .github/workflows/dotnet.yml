@@ -24,6 +24,16 @@ jobs:
     - name: Test
       run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
 
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: success() || failure()                                   # run this step even if previous step failed
+      with:
+        name: DotNet tests                                         # Name of the check run which will be created
+        path: testing123.UnitTests/TestResults/test-results.trx    # Path to test results
+        reporter: dotnet-trx                                       # Format of test results
+
+
+
     - name: Create and navigate to wiki folder
       run: mkdir wiki && cd wiki
 
