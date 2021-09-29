@@ -6,7 +6,7 @@ namespace testing123
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine($"Don't forget, 2 + 2 = {new Calculator().Add(2, 2)}");
         }
     }
 }
