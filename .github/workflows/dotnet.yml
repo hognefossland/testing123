@@ -24,6 +24,9 @@ jobs:
     - name: Test
       run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --no-build --verbosity normal
 
+    - name: Create and navigate to wiki folder
+      run: mkdir wiki && cd wiki
+
     - name: Checkout
       uses: actions/checkout@v2.3.4
       with:
@@ -32,13 +35,21 @@ jobs:
     - name: check wiki repo content before change
       run: |
         ls -al
-    - name: edit wiki
+    - name: Update wiki
       run: |
-        echo test >> test.md
+        cp ..\testing123.UnitTests\coverage.cobertura.xml .
+    
+    - name: ReportGenerator
+      uses: danielpalme/ReportGenerator-GitHub-Action@4.8.12
+      with:
+        reports: coverage.cobertura.xml
+        targetdir: .
+        reporttypes: MarkdownSummary
+        
     - name: check wiki repo content after change
       run: |
         ls -al
-        
+
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
