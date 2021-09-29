@@ -45,7 +45,7 @@ jobs:
       with:
         reports: ./testing123.UnitTests/coverage.cobertura.xml
         targetdir: wiki
-        reporttypes: MarkdownSummary
+        reporttypes: MarkdownSummary, HtmlInline, MHtml
         
     - name: check wiki repo content after change
       run: |
