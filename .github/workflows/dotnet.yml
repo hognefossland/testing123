@@ -23,3 +23,28 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+
+    - name: Checkout
+      uses: actions/checkout@v2.3.4
+      with:
+        repository: ${{ github.repository }}.wiki
+    - name: check wiki repo content before change
+      run: |
+        ls -al
+    - name: edit wiki
+      run: |
+        echo test >> test.md
+    - name: check wiki repo content after change
+      run: |
+        ls -al
+#    - name: Commit files
+#      run: |
+#        git config --local user.email "action@github.com"
+#        git config --local user.name "GitHub Action"
+#        git add .
+#        git commit -m "Add changes"
+        
+#    - name: GitHub Push
+#      uses: ad-m/github-push-action@v0.6.0
+#      with:
+#        repository: ${{ github.repository }}.wiki
