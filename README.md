@@ -1,3 +1,3 @@
 # testing123
 
-Here goes the text.
+[![.NET](https://github.com/hognefossland/testing123/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hognefossland/testing123/actions/workflows/dotnet.yml)
