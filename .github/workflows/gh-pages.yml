@@ -1,0 +1,56 @@
+name: .NET
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+
+    - name: Create docs folder
+      run: mkdir docs
+
+    - name: check docs folder content before change
+      run: |
+        cd wiki && ls -al
+   
+    - name: ReportGenerator
+      uses: danielpalme/ReportGenerator-GitHub-Action@4.8.12
+      with:
+        reports: ./testing123.UnitTests/coverage.cobertura.xml
+        targetdir: docs
+        reporttypes: Html
+        
+    - name: check docs folder content after change
+      run: |
+        cd docs && ls -al
+
+    - name: Commit files
+      run: |
+        git switch gh-pages
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Add changes"
+       
+    - name: GitHub Push
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        repository: ${{ github.repository }}
+        github_token: ${{ secrets.pat }}
+        directory: .
