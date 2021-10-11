@@ -53,5 +53,6 @@ jobs:
       uses: ad-m/github-push-action@v0.6.0
       with:
         repository: ${{ github.repository }}
+        branch: gh-pages
         github_token: ${{ secrets.pat }}
         directory: .
